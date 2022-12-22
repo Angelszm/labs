@@ -30,8 +30,8 @@ minikube service grafana
 
 ## To Access Dashboard From Minikube ## Option 1
 ## Access Prometheus Dashboard
-$ kubectl port-forward prometheus-prom-kube-prometheus-stack-prometheus-name 9090
+kubectl port-forward prometheus-prom-kube-prometheus-stack-prometheus-name 9090
 
 ## Grafana Dashboard ## Option 1
 ## Access Grafana Dashboard
-$ kubectl port-forward prom-grafana-name 3000
+kubectl port-forward prom-grafana-name 3000
