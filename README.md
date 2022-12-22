@@ -14,7 +14,7 @@
 
 
 ## Tasks
-- [x] One Web Incremental and Decremental Counter  (website folder)
+- [x] One Web Incremental and Decremental Counter  (website folder [https://github.com/Angelszm/labs/tree/main/assignment/website])
 - [x] Create s3 Bucket Resource via Terraform (s3.tf)
 - [x] Private S3 Bucket and S3 Configuration via Terraform  (s3.tf)
 - [x] Startup Script to download contents from s3 bucket (startup_script.tpl)
