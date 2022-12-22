@@ -10,8 +10,7 @@ COPY website/* /usr/src/app
 # Copy package.json app directory.
 COPY package.json /app
 
-COPY build/* /usr/src/app/dist/
-# If you are building your code for production
+RUN npm install -only=production
 
 EXPOSE 4000
 CMD [ "npm", "start"]

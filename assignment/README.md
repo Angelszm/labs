@@ -1,3 +1,23 @@
+## Improvements
+- Right now, only 2/3 days and don't have time to check on counter application 
+- Need to use module for our terraform resources 
+- Will use more workspace and variables to create same configuration with only one line 
+- If I have more time and then will give more re-arrange for my current files and all in one the whole configuration. 
+- S3 Bucket Configuration for more details (like encryption etc) 
+- Need to focus on containerized part for counter app
+- For Troubleshooting Steps and Debugging 
+```
+Debugging: 
+kubectl get events -A
+kubectl describe pods pod_name
+kubectl get endpoints ${SERVICE_NAME}
+Or To test DNS like mysql.default.svc.cluster.local
+Run one test pod and try and test 
+kubectl exec -i -t dnsutils -- nslookup  
+kubectl exec -i -t dnsutils -- sh
+kubectl exec -i -t dnsutils -- cat /etc/resolv.conf
+```
+
 # Assignment-1
 
 # Scenario 1 - Terraform, AWS, GitLab CICD
@@ -44,11 +64,6 @@
 ## Requirements for Gitlab Pipeline
 - Add requirement variables for GitLab CI Pipeline (Like ASG_Instance, S3_Bucket_name, ECR_REPO_URL etc)
 
-## Improvements
-- Need to use module for our terraform resources 
-- Will use more workspace and variables to create same configuration with only one line 
-- If I have more time and then will use more re-arrange and all in one the whole configuration. 
-- S3 Bucket Configuration for more details (like encryption etc) 
 ```
 terraform workspace new dev
 terraform workspace select dev 
