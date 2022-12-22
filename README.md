@@ -95,7 +95,7 @@ https://github.com/prometheus-community/helm-charts or prometheus-community/kube
 
 ## Title: Memory Usage with bytes
 ```diff
-sum(container_memory_usage_bytes{namespace="default"}) by (namespace,pod)
+- sum(container_memory_usage_bytes{namespace="default"}) by (namespace,pod)
 ```
 Description:  Memory Usage with bytes
 
