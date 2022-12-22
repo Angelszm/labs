@@ -74,10 +74,10 @@
 
 ## Additonal 
 - If we wanted to add personal alerts and then 
-```
-- Basically need to create the rules on a configmap (Add under data section)
-- Load the promethues pod with the configmap
-- Inject the prometheus config to read the file from the configmap
+```diff
++ Basically need to create the rules on a configmap (Add under data section)
++ Load the promethues pod with the configmap
++ Inject the prometheus config to read the file from the configmap
 ```
 
 ## Prometheus 
