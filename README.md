@@ -55,9 +55,7 @@
 
 # Assignment-2
 
-# Scenario 2: Kubernetes: 
-## Setup
-
+# Scenario 2: Kubernetes 
 
 ## Tasks
 - [x] minikube and docker on local machine (Local install)
