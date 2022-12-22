@@ -9,8 +9,7 @@
 - Private Subnet
 - Application Load Balancer 
 - Auto Scaling Group and Lanuch Configuration
-
-
+- ECR Docker Image
 
 
 ## Tasks
@@ -95,73 +94,73 @@ https://github.com/prometheus-community/helm-charts or prometheus-community/kube
 
 ## Title: Memory Usage with bytes
 ```diff
-- sum(container_memory_usage_bytes{namespace="default"}) by (namespace,pod)
+! sum(container_memory_usage_bytes{namespace="default"}) by (namespace,pod)
 ```
 Description:  Memory Usage with bytes
 
 
 ## Title: Memory Usage with GB
-```
-sum(container_memory_working_set_bytes{namespace="default",image!="", container!="POD"}) by (container,namespace) /1000 / 1000
+```diff
+! sum(container_memory_working_set_bytes{namespace="default",image!="", container!="POD"}) by (container,namespace) /1000 / 1000
 ```
 Description:  Memory Usage with GB
 
 
 ## Title: Per-container memory usage in bytes
-```
-sum(container_memory_usage_bytes{container!~"POD|"}) by (namespace,pod,container)
+```diff
+! sum(container_memory_usage_bytes{container!~"POD|"}) by (namespace,pod,container)
 ```
 
 ## Title: Per-container CPU usage in CPU Cores
-```
-sum(rate(container_cpu_usage_seconds_total{container!~"POD|"}[5m])) by (namespace,pod,container)
+```diff
+! sum(rate(container_cpu_usage_seconds_total{container!~"POD|"}[5m])) by (namespace,pod,container)
 ```
 
 ## Title: Unhealthy Production Pods 
-```
-min_over_time(sum by (namespace, pod) (kube_pod_status_phase{phase=~"Pending|Unknown|Failed"})) > 0
+```diff
+! min_over_time(sum by (namespace, pod) (kube_pod_status_phase{phase=~"Pending|Unknown|Failed"})) > 0
 ```
 Description: Number of Unhealthy Production Pods
 
 
 
 ## Number of Containers Without CPU Limits In Each Namespace
- ```
- count by (namespace)(sum by (namespace,pod,container)(kube_pod_container_info{container!=""}) unless sum by (namespace,pod,container)(kube_pod_container_resource_limits{resource="cpu"}))
+```diff
+!  count by (namespace)(sum by (namespace,pod,container)(kube_pod_container_info{container!=""}) unless sum by (namespace,pod,container)(kube_pod_container_resource_limits{resource="cpu"}))
  ```
  Description: Number of Containers Without CPU Limits In Each Namespace:
 
 
 ## Monitoring Persistent Volume Claim Free Space (50 % Free Space)
- ```
-  100 * (kubelet_volume_stats_available_bytes / kubelet_volume_stats_capacity_bytes)
+```diff
+! 100 * (kubelet_volume_stats_available_bytes / kubelet_volume_stats_capacity_bytes)
  ```
  Description: Checking % of Free Space  with our persistent Volume Claim 
 
 
 ## Monitoring Horizontal Auto Scaling 
- ```
- kube_deployment_status_replicas
+```diff
+! kube_deployment_status_replicas
  ```
  Description: Number of Replicas based on Horizontal Auto Scaling
 
 
  ## Deployment at 0 Replicas State alert
- ```
-   sum(kube_deployment_status_replicas{pod_template_hash=""}) by (deployment,namespace)  < 1
+```diff
+! sum(kube_deployment_status_replicas{pod_template_hash=""}) by (deployment,namespace)  < 1
  ```
  Description: Deployment at 0 Replicas State Alert
 
 
 # HTTP Status Codes 
 # TYPE http_server_requests_seconds summary
-```
-http_server_requests_seconds{app="angel-counter-app",client="client1",exception="None",method="GET",status="200",uri="/index.html",quantile="0.95",} 0.771751936
-sum(rate(http_server_requests_seconds_count{app="test-app"}[1m]))
-sum (rate(http_server_requests_seconds_count{app="test-app", status=~"5.."}[1m]))
+```diff
+! http_server_requests_seconds{app="angel-counter-app",client="client1",exception="None",method="GET",status="200",uri="/index.html",quantile="0.95",} 0.771751936
+! sum(rate(http_server_requests_seconds_count{app="test-app"}[1m]))
+! sum (rate(http_server_requests_seconds_count{app="test-app", status=~"5.."}[1m]))
 ```
 
-```
+```diff
 Ref : https://sysdig.com/blog/prometheus-query-examples/
 Ref : https://sysdig.com/blog/kubernetes-resource-limits/
 Ref: https://www.sudlice.org/openshift/monitoring/prometheus_promql_queries/
