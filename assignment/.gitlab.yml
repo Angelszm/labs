@@ -1,0 +1,64 @@
+stages:
+   - build
+   - deploy
+   - ecr_build
+
+
+.npm-build:
+   stage: build
+   image: node:latest   
+   script:
+      - export PATH=$PATH:/usr/bin/npm    
+      - npm install    
+      - CI=false npm run build  
+      - mkdir error-page && cp -r build/* error-page && cp -r error-page $BUILD_FOLDER
+   artifacts:    
+      paths:      
+         - $BUILD_FOLDER    
+      expire_in: 1 hour
+
+npm-build-master:  
+   extends: .npm-build
+   variables:
+     BUILD_FOLDER: build/master
+   only:    
+      - master  
+
+.s3-deploy:
+   image: python:latest
+   stage: deploy
+   script:
+      - pip3 install awscli
+      - aws s3 sync $BUILD_FOLDER s3://$S3_BUCKET --acl public-read
+      - echo "After s3 content changes successfully updated"
+      - >
+        aws autoscaling start-instance-refresh --auto-scaling-group-name $ASG_Instance 
+        —preferences MinHealthyPercentage=90,InstanceWarmup=300
+        
+
+s3-deploy-master:
+   extends: .s3-deploy
+   variables:
+     BUILD_FOLDER: ./build/master
+   environment: prd
+   only:    
+      - master  
+
+.ecr-docker-build:
+   image: python:latest
+   variables:
+     IMAGE_TAG: Docker image tag in ECR
+   stage: ecr_build
+   before_script:
+    - apk add --no-cache curl jq python3 py-pip
+    - pip install awscli
+    - $(aws ecr get-login --no-include-email)
+   script:
+    - docker build -t $ECR_REPO_URL:$IMAGE_TAG counter-app
+    - docker push $ECR_REPO_URL --all-tags
+
+ecr-docker-master:
+   extends: .ecr-docker-build
+   environment: prd
+   only:    
+      - master  

@@ -7,7 +7,7 @@ variable "naming_prefix" {
 variable "env" {
   description = "Environment Name / Workspace Name"
   type        = string
-  default     = "default"
+  default     = "Swe"
 }
 
 
@@ -76,4 +76,10 @@ variable "project" {
   type        = string
   description = "Project name for resource tagging"
   default     = "server-fleet-nginx"
+}
+
+variable "repo_name" {
+  type        = string
+  default     = "counter-app"
+  description = "ECR repo to store a Docker image."
 }
