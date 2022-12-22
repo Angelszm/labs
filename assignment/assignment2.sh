@@ -10,6 +10,8 @@ sleep 50
 ## For Mysql StatefulSet, Persistent Volume, Persistent Volume Cliam, Secret, Service & Configmap
 kubectl create -f mysql-server.yaml
 
+## Counter App on Local Minikube
+kubectl create -f counter-app.yaml
 
 ## Prometheus Install and Setup 
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
