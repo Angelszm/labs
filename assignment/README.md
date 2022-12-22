@@ -17,14 +17,14 @@
 - [x] Create s3 Bucket Resource via Terraform [s3.tf](https://github.com/Angelszm/labs/blob/main/assignment/s3.tf)
 - [x] Private S3 Bucket and S3 Configuration via Terraform  [s3.tf](https://github.com/Angelszm/labs/blob/main/assignment/s3.tf)
 - [x] Startup Script to download contents from s3 bucket [startup_script.tpl](https://github.com/Angelszm/labs/blob/main/assignment/startup_script.tpl)
-- [x] Instance Profile [ec2.tf] https://github.com/Angelszm/labs/blob/main/assignment/ec2.tf)
+- [x] Instance Profile [ec2.tf]https://github.com/Angelszm/labs/blob/main/assignment/ec2.tf)
 - [x] IAM Role and Policy for s3 (From EC2) [iam.tf](https://github.com/Angelszm/labs/blob/main/assignment/iam.tf)
 - [x] Default VPC Resource and Subnet [ec2.tf](https://github.com/Angelszm/labs/blob/main/assignment/ec2.tf)
 - [x] Private Subnet for Nginx Server [ec2.tf](https://github.com/Angelszm/labs/blob/main/assignment/ec2.tf)
 - [x] Security Group for Nginx Server [ec2.tf](https://github.com/Angelszm/labs/blob/main/assignment/ec2.tf)
 - [x] Instance for Nginx Server [auto-scaling-group.tf](https://github.com/Angelszm/labs/blob/main/assignment/auto-scaling-group.tf) 
 - [x] Security Group of Application Load Balancer [loadbalancer.tf](https://github.com/Angelszm/labs/blob/main/assignment/loadbalancer.tf)
-- [x] Ingress (HTTP and HTTPS) and Egress (Outbound Internet Access)[loadbalancer.tf] (https://github.com/Angelszm/labs/blob/main/assignment/loadbalancer.tf)
+- [x] Ingress (HTTP and HTTPS) and Egress (Outbound Internet Access)[loadbalancer.tf](https://github.com/Angelszm/labs/blob/main/assignment/loadbalancer.tf)
 - [x] Restrict inbound access to both public ALB and Server Fleet A to only allow on port 80/TCP (both ec2.tf and loadbalancer)
 - [x] Only allow nginx instance from public load balancer's security group with Port 80 [ec2.tf](https://github.com/Angelszm/labs/blob/main/assignment/ec2.tf)
 - [x] Application Load Balancer Resource (loadbalancer.tf) [loadbalancer.tf](https://github.com/Angelszm/labs/blob/main/assignment/loadbalancer.tf)
@@ -46,10 +46,20 @@
 
 ## Improvements
 - Need to use module for our terraform resources 
-- Will use more variables to create same configuration with only one line 
+- Will use more workspace and variables to create same configuration with only one line 
 - If I have more time and then will use more re-arrange and all in one the whole configuration. 
 - S3 Bucket Configuration for more details (like encryption etc) 
+```
+terraform workspace new dev
+terraform workspace select dev 
 
+## To Use Variable File for each environment 
+terraform init -var-file="./dev/variables/local.tfvars."
+terraform plan -var-file="./dev/variables/local.tfvars."
+
+For Deleting 
+terraform destroy --force
+```
 
 # Assignment-2
 
@@ -63,7 +73,7 @@
 - [x] Docker Build on gitlab pipeline [.gitlab.yml](https://github.com/Angelszm/labs/blob/main/assignment/.gitlab.yml)
 - [x] Deploy MySQL Server on k8s [mysql-server.yaml](https://github.com/Angelszm/labs/blob/main/assignment/mysql-server.yaml)
 - [x] Create a table in a MySQL Database [mysql-server.yaml](https://github.com/Angelszm/labs/blob/main/assignment/mysql-server.yaml)
-- [x] Implement Counter App on local minikube with horizontal auto scaling
+- [x] Implement Counter App on local minikube with horizontal auto scaling [Counter App](https://github.com/Angelszm/labs/blob/main/assignment/counter-app.yaml)
 - [x] Counter app able to communicate with MySQL Server (Cluster IP, Use this mysql.default.svc.cluster.local)
 - [x] Deploy Prometheus and Grafana [assignment2.sh]https://github.com/Angelszm/labs/blob/main/assignment/assignment2.sh
 - [x] Access Dashbaord on Minikube  [assignment2.sh]https://github.com/Angelszm/labs/blob/main/assignment/assignment2.sh
