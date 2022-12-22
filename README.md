@@ -2,8 +2,6 @@
 
 # Scenario 1 - Terraform, AWS, GitLab CICD
 
-## Setup
-
 
 ## AWS Cloud Design Overview
 - Private S3 Bucket 
@@ -164,7 +162,7 @@ sum(rate(http_server_requests_seconds_count{app="test-app"}[1m]))
 sum (rate(http_server_requests_seconds_count{app="test-app", status=~"5.."}[1m]))
 ```
 
-
+```
 Ref : https://sysdig.com/blog/prometheus-query-examples/
 Ref : https://sysdig.com/blog/kubernetes-resource-limits/
 Ref: https://www.sudlice.org/openshift/monitoring/prometheus_promql_queries/
@@ -177,3 +175,4 @@ Ref : https://medium.com/backstagewitharchitects/how-to-setup-monitoring-using-p
 ## Useful Morden Dashboards
 
 Ref: https://medium.com/@dotdc/a-set-of-modern-grafana-dashboards-for-kubernetes-4b989c72a4b2
+```
