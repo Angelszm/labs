@@ -1,5 +1,4 @@
 ## Improvements
-- Right now, only 2/3 days and don't have time to check on counter application 
 - Need to use module for our terraform resources 
 - Will use more workspace and variables to create same configuration with only one line 
 - If I have more time and then will give more re-arrange for my current files and all in one the whole configuration. 
